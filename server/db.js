@@ -1,15 +1,12 @@
-var pg = require('pg');
-require('dotenv').config();
+require('dotenv').config()
+const Pool = require("pg").Pool;
 
-// replace "process.env.DB_KEY" with your own database to connect
-var conString = process.env.DB_KEY
-var client = new pg.Client(conString);
-client.connect(function(err) {
-  if(err) {
-    return console.error('could not connect to postgres', err);
-  }
-  console.log("it works!!!");
-  client.end();
+const pool = new Pool({
+  user: "postgres",
+  password: process.env.DB_PASS,
+  host: "localhost",
+  port: 5432,
+  database: "perntodo"
 });
 
-module.exports = client;
+module.exports = pool;

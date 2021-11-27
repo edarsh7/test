@@ -1,17 +1,21 @@
 const express = require('express');
 const cors = require('cors');
+const pool = require('./db');
 
 const app = express();
 
 app.use(cors());
+app.use(express.json());
 
-const client  = require('./db');
-
-app.get('/', async (req, res) => {
+app.post("/todos", async (req, res) => {
     try {
-        const results = await client.query('SELECT * FROM your_table');
-        res.json(results);
+        console.log(req.body);
+        res.json("good job dick head");
     } catch (err) {
-        console.log(err);
+        console.log(err.message);
     }
+});
+
+app.listen(5000, ()=>{
+    console.log("server has started on port 5000")
 });
