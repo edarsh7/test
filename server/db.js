@@ -1,12 +1,13 @@
-require('dotenv').config()
-const Pool = require("pg").Pool;
+const { Client } = require('pg');
+require('dotenv').config();
 
-const pool = new Pool({
-  user: "postgres",
+// replace "process.env.DB_KEY" with your own database to connect
+const client = new Client({
+  user: 'ndhwtyac',
   password: process.env.DB_PASS,
-  host: "localhost",
-  port: 5432,
-  database: "perntodo"
-});
+  host: 'kashin.db.elephantsql.com',
+  database: 'ndhwtyac',
+  connectionString: process.env.DB_KEY
+})
 
-module.exports = pool;
+module.exports = client; 
